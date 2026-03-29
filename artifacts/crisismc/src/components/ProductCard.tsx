@@ -48,8 +48,8 @@ export function ProductCard({ product }: ProductCardProps) {
 
       {/* Price */}
       <div className="p-6 flex items-baseline">
-        <span className="text-4xl font-black font-display text-white">
-          {formatCurrency(product.price)}
+        <span className="text-4xl font-black font-display text-foreground">
+          {new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(product.price)}
         </span>
         <span className="text-muted-foreground ml-2">/ lifetime</span>
       </div>

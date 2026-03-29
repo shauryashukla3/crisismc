@@ -40,38 +40,79 @@
 }
 
 :root {
-  /* Dark dramatic gaming theme by default */
-  --background: 240 10% 4%;
-  --foreground: 0 0% 98%;
-
-  --card: 240 10% 6%;
-  --card-foreground: 0 0% 98%;
-
-  --popover: 240 10% 6%;
-  --popover-foreground: 0 0% 98%;
-
-  /* Emerald Green */
-  --primary: 142 76% 36%;
+  --background: 0 0% 98%;
+  --foreground: 222 47% 11%;
+  --border: 214 32% 88%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --card-border: 214 32% 88%;
+  --sidebar: 0 0% 96%;
+  --sidebar-foreground: 222 47% 11%;
+  --sidebar-border: 214 32% 88%;
+  --sidebar-primary: 142 71% 38%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 214 32% 93%;
+  --sidebar-accent-foreground: 222 47% 11%;
+  --sidebar-ring: 142 71% 38%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --popover-border: 214 32% 88%;
+  --primary: 142 71% 38%;
   --primary-foreground: 0 0% 100%;
+  --secondary: 214 32% 93%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 214 32% 93%;
+  --muted-foreground: 215 20% 45%;
+  --accent: 214 32% 93%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 84% 55%;
+  --destructive-foreground: 0 0% 98%;
+  --input: 214 32% 88%;
+  --ring: 142 71% 38%;
+  --chart-1: 142 71% 38%;
+  --chart-2: 200 80% 45%;
+  --chart-3: 38 90% 50%;
+  --chart-4: 262 70% 58%;
+  --chart-5: 0 84% 55%;
+  
+  --radius: 0.5rem;
+}
 
-  /* Deep purple/blue secondary for magical contrast */
-  --secondary: 262 83% 58%;
-  --secondary-foreground: 0 0% 100%;
-
-  --muted: 240 5% 15%;
-  --muted-foreground: 240 5% 65%;
-
-  --accent: 142 76% 36%;
-  --accent-foreground: 0 0% 100%;
-
+.dark {
+  --background: 222 47% 5%;
+  --foreground: 210 40% 98%;
+  --border: 217 33% 17%;
+  --card: 222 47% 7%;
+  --card-foreground: 210 40% 98%;
+  --card-border: 217 33% 17%;
+  --sidebar: 222 47% 6%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-border: 217 33% 17%;
+  --sidebar-primary: 142 71% 45%;
+  --sidebar-primary-foreground: 0 0% 0%;
+  --sidebar-accent: 217 33% 12%;
+  --sidebar-accent-foreground: 210 40% 98%;
+  --sidebar-ring: 142 71% 45%;
+  --popover: 222 47% 7%;
+  --popover-foreground: 210 40% 98%;
+  --popover-border: 217 33% 17%;
+  --primary: 142 71% 45%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217 33% 12%;
+  --muted-foreground: 215 20% 55%;
+  --accent: 217 33% 17%;
+  --accent-foreground: 210 40% 98%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 98%;
-
-  --border: 240 5% 15%;
-  --input: 240 5% 15%;
-  --ring: 142 76% 36%;
-
-  --radius: 0.5rem;
+  --input: 217 33% 17%;
+  --ring: 142 71% 45%;
+  --chart-1: 142 71% 45%;
+  --chart-2: 200 80% 50%;
+  --chart-3: 38 90% 60%;
+  --chart-4: 262 70% 65%;
+  --chart-5: 0 84% 60%;
 }
 
 @layer base {
@@ -104,6 +145,6 @@
   }
 
   .glass-panel {
-    @apply bg-background/60 backdrop-blur-xl border border-white/10;
+    @apply bg-background/60 backdrop-blur-xl border border-foreground/10;
   }
 }
