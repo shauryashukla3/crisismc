@@ -5,22 +5,6 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-export interface HealthStatus {
-  status: string;
-}
-
-export type MinecraftStatusPlayers = {
-  online: number;
-  max: number;
-};
-
-export interface MinecraftStatus {
-  online: boolean;
-  players: MinecraftStatusPlayers;
-  motd?: string;
-  version?: string;
-  ip: string;
-}
 
 export interface StoreProduct {
   id: string;

@@ -14,3 +14,34 @@ import * as zod from "zod";
 export const HealthCheckResponse = zod.object({
   status: zod.string(),
 });
+
+/**
+ * Returns the live status of the CrisisMC server
+ * @summary Get Minecraft server status
+ */
+export const GetMinecraftStatusResponse = zod.object({
+  online: zod.boolean(),
+  players: zod.object({
+    online: zod.number(),
+    max: zod.number(),
+  }),
+  motd: zod.string().optional(),
+  version: zod.string().optional(),
+  ip: zod.string(),
+});
+
+/**
+ * Returns a list of available store products/ranks
+ * @summary Get store products
+ */
+export const GetStoreProductsResponseItem = zod.object({
+  id: zod.string(),
+  name: zod.string(),
+  description: zod.string(),
+  price: zod.number(),
+  category: zod.string(),
+  featured: zod.boolean(),
+  color: zod.string(),
+  perks: zod.array(zod.string()),
+});
+export const GetStoreProductsResponse = zod.array(GetStoreProductsResponseItem);

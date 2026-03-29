@@ -48,6 +48,17 @@ Every package extends `tsconfig.base.json` which sets `composite: true`. The roo
 - `pnpm run build` — runs `typecheck` first, then recursively runs `build` in all packages that define it
 - `pnpm run typecheck` — runs `tsc --build --emitDeclarationOnly` using project references
 
+## Artifacts
+
+### `artifacts/crisismc` (`@workspace/crisismc`)
+
+CrisisMC Minecraft server website (crisismc.xyz). React + Vite frontend at `/`.
+
+- Home page: hero section with server IP (play.crisismc.xyz), live server status widget, features
+- Store page: ranks/products with category filter, fetched from `/api/store/products`
+- Navbar, footer, dark gaming theme with green accents
+- Server status polling from `/api/minecraft/status` (uses mcsrvstat.us public API)
+
 ## Packages
 
 ### `artifacts/api-server` (`@workspace/api-server`)

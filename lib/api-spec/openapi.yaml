@@ -1,6 +1,5 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
   description: API specification
@@ -10,6 +9,10 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: minecraft
+    description: Minecraft server operations
+  - name: store
+    description: Store operations
 paths:
   /healthz:
     get:
@@ -24,6 +27,34 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /minecraft/status:
+    get:
+      operationId: getMinecraftStatus
+      tags: [minecraft]
+      summary: Get Minecraft server status
+      description: Returns the live status of the CrisisMC server
+      responses:
+        "200":
+          description: Server status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MinecraftStatus"
+  /store/products:
+    get:
+      operationId: getStoreProducts
+      tags: [store]
+      summary: Get store products
+      description: Returns a list of available store products/ranks
+      responses:
+        "200":
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StoreProduct"
 components:
   schemas:
     HealthStatus:
@@ -33,4 +64,58 @@ components:
           type: string
       required:
         - status
-
+    MinecraftStatus:
+      type: object
+      properties:
+        online:
+          type: boolean
+        players:
+          type: object
+          properties:
+            online:
+              type: integer
+            max:
+              type: integer
+          required:
+            - online
+            - max
+        motd:
+          type: string
+        version:
+          type: string
+        ip:
+          type: string
+      required:
+        - online
+        - players
+        - ip
+    StoreProduct:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        featured:
+          type: boolean
+        color:
+          type: string
+        perks:
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - name
+        - description
+        - price
+        - category
+        - featured
+        - color
+        - perks

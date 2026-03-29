@@ -1,0 +1,16 @@
+packages:
+  "framer-motion": "For dramatic gaming animations, glowing reveals, and page transitions"
+  "clsx": "Utility for constructing className strings conditionally"
+  "tailwind-merge": "Utility for merging tailwind classes without style conflicts"
+
+images:
+  - path: "artifacts/crisismc/public/images/hero-bg.png"
+    description: "Dark, dramatic, cinematic Minecraft-style landscape with glowing emerald green crystals, deep shadows, volumetric lighting, night time, unreal engine 5 render style"
+    aspect_ratio: "16:9"
+  - path: "artifacts/crisismc/public/images/store-bg.png"
+    description: "Abstract dark background with subtle glowing green magical particles and dark stone textures, deep shadows"
+    aspect_ratio: "16:9"
+
+notes:
+  - API endpoints are assumed to be mounted at /api prefix via proxy.
+  - Using generated hooks from @workspace/api-client-react.

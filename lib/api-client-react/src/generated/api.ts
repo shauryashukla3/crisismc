@@ -13,7 +13,11 @@ import type {
   UseQueryResult,
 } from "@tanstack/react-query";
 
-import type { HealthStatus } from "./api.schemas";
+import type {
+  HealthStatus,
+  MinecraftStatus,
+  StoreProduct,
+} from "./api.schemas";
 
 import { customFetch } from "../custom-fetch";
 import type { ErrorType } from "../custom-fetch";
@@ -92,6 +96,158 @@ export function useHealthCheck<
   request?: SecondParameter<typeof customFetch>;
 }): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
   const queryOptions = getHealthCheckQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * Returns the live status of the CrisisMC server
+ * @summary Get Minecraft server status
+ */
+export const getGetMinecraftStatusUrl = () => {
+  return `/api/minecraft/status`;
+};
+
+export const getMinecraftStatus = async (
+  options?: RequestInit,
+): Promise<MinecraftStatus> => {
+  return customFetch<MinecraftStatus>(getGetMinecraftStatusUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetMinecraftStatusQueryKey = () => {
+  return [`/api/minecraft/status`] as const;
+};
+
+export const getGetMinecraftStatusQueryOptions = <
+  TData = Awaited<ReturnType<typeof getMinecraftStatus>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getMinecraftStatus>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetMinecraftStatusQueryKey();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getMinecraftStatus>>
+  > = ({ signal }) => getMinecraftStatus({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getMinecraftStatus>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetMinecraftStatusQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getMinecraftStatus>>
+>;
+export type GetMinecraftStatusQueryError = ErrorType<unknown>;
+
+/**
+ * @summary Get Minecraft server status
+ */
+
+export function useGetMinecraftStatus<
+  TData = Awaited<ReturnType<typeof getMinecraftStatus>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getMinecraftStatus>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetMinecraftStatusQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * Returns a list of available store products/ranks
+ * @summary Get store products
+ */
+export const getGetStoreProductsUrl = () => {
+  return `/api/store/products`;
+};
+
+export const getStoreProducts = async (
+  options?: RequestInit,
+): Promise<StoreProduct[]> => {
+  return customFetch<StoreProduct[]>(getGetStoreProductsUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetStoreProductsQueryKey = () => {
+  return [`/api/store/products`] as const;
+};
+
+export const getGetStoreProductsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getStoreProducts>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getStoreProducts>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetStoreProductsQueryKey();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getStoreProducts>>
+  > = ({ signal }) => getStoreProducts({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getStoreProducts>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetStoreProductsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getStoreProducts>>
+>;
+export type GetStoreProductsQueryError = ErrorType<unknown>;
+
+/**
+ * @summary Get store products
+ */
+
+export function useGetStoreProducts<
+  TData = Awaited<ReturnType<typeof getStoreProducts>>,
+  TError = ErrorType<unknown>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getStoreProducts>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetStoreProductsQueryOptions(options);
 
   const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
     queryKey: QueryKey;
