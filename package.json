@@ -5,7 +5,7 @@
   "scripts": {
    "preinstall": "echo using pnpm",
    "build": "corepack enable && corepack prepare pnpm@10.11.1 --activate && pnpm install --no-frozen-lockfile && pnpm --filter crisismc build",
-   "deploy": "cd artifacts/crisismc && pnpm dlx wrangler deploy
+   "deploy": "cd artifacts/crisismc && pnpm dlx wrangler deploy"
   },
   "private": true,
   "devDependencies": {
