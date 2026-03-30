@@ -4,8 +4,7 @@
   "license": "MIT",
   "scripts": {
    "preinstall": "echo using pnpm",
-   "build": "corepack enable && corepack prepare pnpm@10.11.1 --activate && pnpm install --no-frozen-lockfile && pnpm run build:app",
-   "build:app": "vite build"
+     "build": "corepack enable && corepack prepare pnpm@10.11.1 --activate && pnpm install --no-frozen-lockfile && pnpm --filter crisismc build"
   },
   "private": true,
   "devDependencies": {
