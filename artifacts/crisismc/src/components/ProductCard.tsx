@@ -1,4 +1,4 @@
-import { StoreProduct } from "@workspace/api-client-react";
+import type { StoreProduct } from "@/types/store";
 import { Check, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

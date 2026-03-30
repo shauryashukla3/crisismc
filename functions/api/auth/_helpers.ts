@@ -24,7 +24,6 @@ export interface Env {
 export async function hashPassword(password: string): Promise<{ hash: string; salt: string }> {
   const saltBytes = crypto.getRandomValues(new Uint8Array(16));
   const salt = btoa(String.fromCharCode(...saltBytes));
-
   const keyMaterial = await crypto.subtle.importKey(
     "raw",
     new TextEncoder().encode(password),
@@ -32,13 +31,11 @@ export async function hashPassword(password: string): Promise<{ hash: string; sa
     false,
     ["deriveBits"]
   );
-
   const hashBuffer = await crypto.subtle.deriveBits(
     { name: "PBKDF2", salt: saltBytes, iterations: 100000, hash: "SHA-256" },
     keyMaterial,
     256
   );
-
   const hash = btoa(String.fromCharCode(...new Uint8Array(hashBuffer)));
   return { hash, salt };
 }
@@ -49,7 +46,6 @@ export async function verifyPassword(
   saltBase64: string
 ): Promise<boolean> {
   const saltBytes = Uint8Array.from(atob(saltBase64), (c) => c.charCodeAt(0));
-
   const keyMaterial = await crypto.subtle.importKey(
     "raw",
     new TextEncoder().encode(password),
@@ -57,13 +53,11 @@ export async function verifyPassword(
     false,
     ["deriveBits"]
   );
-
   const hashBuffer = await crypto.subtle.deriveBits(
     { name: "PBKDF2", salt: saltBytes, iterations: 100000, hash: "SHA-256" },
     keyMaterial,
     256
   );
-
   const newHash = btoa(String.fromCharCode(...new Uint8Array(hashBuffer)));
   return newHash === storedHash;
 }
@@ -74,8 +68,7 @@ export function getCookie(request: Request, name: string): string | null {
     const eqIdx = part.indexOf("=");
     if (eqIdx === -1) continue;
     const key = part.slice(0, eqIdx).trim();
-    const value = part.slice(eqIdx + 1);
-    if (key === name) return decodeURIComponent(value);
+    if (key === name) return decodeURIComponent(part.slice(eqIdx + 1));
   }
   return null;
 }

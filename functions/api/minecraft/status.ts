@@ -3,8 +3,6 @@ interface MinecraftApiResponse {
   players?: { online?: number; max?: number };
   motd?: { clean?: string[] };
   version?: string;
-  hostname?: string;
-  ip?: string;
 }
 
 export const onRequestGet = async (): Promise<Response> => {
@@ -19,20 +17,19 @@ export const onRequestGet = async (): Promise<Response> => {
 
     const data = (await response.json()) as MinecraftApiResponse;
 
-    const result = {
-      online: data.online ?? false,
-      players: {
-        online: data.players?.online ?? 0,
-        max: data.players?.max ?? 100,
-      },
-      motd: data.motd?.clean?.[0] ?? "Welcome to CrisisMC!",
-      version: data.version ?? "1.21",
-      ip: serverHost,
-    };
-
-    return new Response(JSON.stringify(result), {
-      headers: { "Content-Type": "application/json" },
-    });
+    return new Response(
+      JSON.stringify({
+        online: data.online ?? false,
+        players: {
+          online: data.players?.online ?? 0,
+          max: data.players?.max ?? 100,
+        },
+        motd: data.motd?.clean?.[0] ?? "Welcome to CrisisMC!",
+        version: data.version ?? "1.21",
+        ip: serverHost,
+      }),
+      { headers: { "Content-Type": "application/json" } }
+    );
   } catch {
     return new Response(
       JSON.stringify({

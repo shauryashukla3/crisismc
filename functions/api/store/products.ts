@@ -120,8 +120,7 @@ const products = [
   },
 ];
 
-export const onRequestGet = (): Response => {
-  return new Response(JSON.stringify(products), {
+export const onRequestGet = (): Response =>
+  new Response(JSON.stringify(products), {
     headers: { "Content-Type": "application/json" },
   });
-};

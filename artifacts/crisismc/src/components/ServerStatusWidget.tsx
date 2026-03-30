@@ -1,4 +1,4 @@
-import { useGetMinecraftStatus } from "@workspace/api-client-react";
+import { useGetMinecraftStatus } from "@/hooks/useApi";
 import { Server, Users, Activity, Copy, CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
