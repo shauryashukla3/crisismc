@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
    "preinstall": "echo using pnpm",
-     "build": "corepack enable && corepack prepare pnpm@10.11.1 --activate && pnpm install --no-frozen-lockfile && pnpm --filter crisismc build"
+   "build": "corepack enable && corepack prepare pnpm@10.11.1 --activate && pnpm install --no-frozen-lockfile && pnpm --filter crisismc build"
+   "deploy": "cd artifacts/crisismc && npx wrangler deploy"
   },
   "private": true,
   "devDependencies": {
