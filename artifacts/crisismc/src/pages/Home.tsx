@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ServerStatusWidget } from "@/components/ServerStatusWidget";
 import { Button } from "@/components/ui/button";
+import { LavaEffect } from "@/components/LavaEffect";
 
 const features = [
   {
@@ -46,6 +47,7 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent" />
+            <LavaEffect />
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
